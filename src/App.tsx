@@ -28,17 +28,17 @@ export const App = () => {
     }
   }, [status])
 
-  useEffect(() => {
-    //ПЕРЕПИСАТЬ ФУНКЦИЮ АВТООБНОВЛЕНИЯ
-    // const intervalId = setInterval(async() => {
-    //   let res = await getLastestNews();
-    //   if(value && res !== value[0].id) {
-    //     dispatch(getNews());
-    //   }
-    // }, 60000);
 
-    return () => clearInterval(intervalId);
-  }, []);
+  //Автообновление
+  // useEffect(() => {
+  //   const intervalId = setInterval(async() => {
+  //     let res = await getLastestNews();
+  //     if(value && (value[0].id !== res)){
+  //       dispatch(getNews());
+  //     }
+  //   }, 60000);
+  //   return () => clearInterval(intervalId);
+  // }, [value])
 
   return (
     <SplitLayout popout={popout}>
