@@ -12,6 +12,7 @@ import {
 } from '@vkontakte/vkui';
 import { UserInfo } from '@vkontakte/vk-bridge';
 import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
+import { NewsList } from '../components/NewsList/NewsList';
 
 export interface HomeProps extends NavIdProps {
   fetchedUser?: UserInfo;
@@ -39,6 +40,11 @@ export const Home: FC<HomeProps> = ({ id, fetchedUser }) => {
           </Button>
         </Div>
       </Group>
+
+      <Group header={<Header mode="secondary">Navigation Example</Header>}>
+      <NewsList />
+      </Group>
+      
     </Panel>
   );
 };
