@@ -8,6 +8,10 @@ import { transformVKBridgeAdaptivity } from './utils';
 import { router } from './routes';
 import { App } from './App';
 
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+
+
 export const AppConfig = () => {
   const vkBridgeAppearance = useAppearance() || undefined;
   const vkBridgeInsets = useInsets() || undefined;
@@ -24,7 +28,9 @@ export const AppConfig = () => {
       <AdaptivityProvider {...adaptivity}>
         <AppRoot mode="full" safeAreaInsets={vkBridgeInsets}>
           <RouterProvider router={router}>
+            <Provider store={store}>
             <App />
+            </Provider>
           </RouterProvider>
         </AppRoot>
       </AdaptivityProvider>
