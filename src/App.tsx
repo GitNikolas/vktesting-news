@@ -29,12 +29,13 @@ export const App = () => {
   }, [status])
 
   useEffect(() => {
-    const intervalId = setInterval(async() => {
-      let res = await getLastestNews();
-      if(res !== value?[0]){
-        dispatch(getNews());
-      }
-    }, 60000);
+    //ПЕРЕПИСАТЬ ФУНКЦИЮ АВТООБНОВЛЕНИЯ
+    // const intervalId = setInterval(async() => {
+    //   let res = await getLastestNews();
+    //   if(value && res !== value[0].id) {
+    //     dispatch(getNews());
+    //   }
+    // }, 60000);
 
     return () => clearInterval(intervalId);
   }, []);
