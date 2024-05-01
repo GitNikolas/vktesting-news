@@ -6,7 +6,7 @@ import { Home } from './panels';
 import { DEFAULT_VIEW_PANELS } from './routes';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { getNews, handleClearValue } from './app/News/newsSlice';
-import { fetchNews, fetchNewsIdArray, getLastestNews } from './utils/hackerNewsApi/hackerNewsApi';
+import { fetchNewsIdArray, getLastestNews } from './utils/hackerNewsApi/hackerNewsApi';
 import { NewsCard } from './components/NewsCard/NewsCard';
 
 
