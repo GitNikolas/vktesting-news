@@ -19,7 +19,6 @@ export const NewsCard: FC<NavIdProps> = ({ id }) => {
   async function handleUpdateNews(){
     if(params !== undefined && typeof params.id === `string`){
       let res = await fetchNews(params.id);
-      console.log(res);
       setSelectNews(res);
       if(res.kids){
          let commentResponse = await fetchComments(res.kids);
