@@ -20,13 +20,19 @@ export async function fetchNewsArray(){
   }
 
   export async function fetchComments(idArray:number[]) {
-    let commentsArr = [];
-    for(let i = 0; i < idArray.length; i++){
-      const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${idArray[i]}.json?print=pretty`);
-      const comment = await res.json();
-      commentsArr.push(comment);
+    try{
+      let commentsArr = [];
+      for(let i = 0; i < idArray.length; i++){
+        const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${idArray[i]}.json?print=pretty`);
+        const comment = await res.json();
+        commentsArr.push(comment);
+      }
+      return commentsArr;
     }
-    return commentsArr;
+    catch(err){
+      console.log(err);
+    }
+
   }
 
   export async function getLastestNews(){
