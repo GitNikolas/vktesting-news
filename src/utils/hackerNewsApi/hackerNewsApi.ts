@@ -6,17 +6,11 @@ export async function fetchNews(id:string){
   return data;
 }
 
-export async function fetchNewsArray(){
+  export async function fetchNewsIdArray(){
     const res = await fetch(`https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty`);
     let data = await res.json();
     data = data.slice(0,100);
-    let newsArr = [];
-    for(let i = 0; i < data.length; i++){
-      const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${data[i]}.json?print=pretty`);
-      const news = await res.json();
-      newsArr.push(news);
-    }
-    return newsArr;
+    return data;
   }
 
   export async function fetchComments(idArray:number[]) {

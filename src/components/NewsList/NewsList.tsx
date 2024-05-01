@@ -4,9 +4,10 @@ import { useRouteNavigator } from '@vkontakte/vk-mini-apps-router';
 import { View, Group, CardGrid, Card, Spacing } from '@vkontakte/vkui';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { NewsType } from '../../Types/NewsType';
-import { getNews } from '../../app/News/newsSlice';
+import { getNews, handleClearValue } from '../../app/News/newsSlice';
 import { ScreenSpinner } from '@vkontakte/vkui';
 import { convertToData } from '../../utils/Date/convertToData';
+import { fetchNewsIdArray } from '../../utils/hackerNewsApi/hackerNewsApi';
 
 export const NewsList: FC<NavIdProps> = ({ id }) => {
   const routeNavigator = useRouteNavigator();
@@ -20,8 +21,10 @@ export const NewsList: FC<NavIdProps> = ({ id }) => {
     setNewsList(news);
   }, [news])
 
-  function hadleUpdateNews(){
-      dispatch(getNews());
+  async function hadleUpdateNews(){
+    dispatch(handleClearValue());
+    let res = await fetchNewsIdArray();
+    res.map((item:string) => dispatch(getNews(item)));
   }
 
   return (

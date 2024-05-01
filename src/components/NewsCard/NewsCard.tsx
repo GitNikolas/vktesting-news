@@ -16,7 +16,7 @@ export const NewsCard: FC<NavIdProps> = ({ id }) => {
     const [selectNews, setSelectNews] = useState<NewsType | null>(null);
     const [comments, setComments] = useState<CommentType[] | null>(null);
 
-  async function handleUpdateComments(){
+  async function handleUpdateNews(){
     if(params !== undefined && typeof params.id === `string`){
       let res = await fetchNews(params.id);
       console.log(res);
@@ -35,15 +35,8 @@ export const NewsCard: FC<NavIdProps> = ({ id }) => {
      }
   }
 
-//   useMemo(async() => {
-//    if(params !== undefined && typeof params.id === `string`){
-//     let res = await fetchNews(params.id);
-//     setSelectNews(res);
-//    }
-//   }, [])
-
   useEffect(() => {
-    handleUpdateComments();
+    handleUpdateNews();
    }, [])
 
   return (
@@ -58,7 +51,7 @@ export const NewsCard: FC<NavIdProps> = ({ id }) => {
 
       <Group>
         <Title>Комментарии</Title>
-        <Button style={{margin:'10px'}} onClick={handleUpdateComments}>Обновить</Button>
+        <Button style={{margin:'10px'}} onClick={handleUpdateNews}>Обновить</Button>
         <CardGrid size='l' spaced>
           { comments ?
             comments.map(comment => ( 

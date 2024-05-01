@@ -1,21 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { NewsType } from '../../Types/NewsType';
-import { fetchNewsArray } from '../../utils/hackerNewsApi/hackerNewsApi';
+import { fetchNews } from '../../utils/hackerNewsApi/hackerNewsApi';
 
 export interface NewsState {
-    value: NewsType[] | null;
+    value: NewsType[];
     status: 'idle' | 'loading' | 'failed';
 }
 
 const initialState: NewsState = {
-    value:  null,
+    value:  [],
     status: 'idle'
 }
 
-export const getNews = createAsyncThunk(
+  export const getNews = createAsyncThunk(
     'news/getNews',
-    async () => {
-      const response = await fetchNewsArray();
+    async (id:string) => {
+      const response = await fetchNews(id);
       return response;
     }
   );
@@ -24,6 +24,9 @@ export const newsSlice = createSlice({
     name: 'news',
     initialState,
     reducers:{
+      handleClearValue: (state) => {
+        state.value = [];
+      },
     },
     extraReducers: (builder) => {
         builder
@@ -32,7 +35,7 @@ export const newsSlice = createSlice({
           })
           .addCase(getNews.fulfilled, (state, action) => {
             state.status = 'idle';
-            state.value = action.payload;
+            state.value.push(action.payload);
           })
           .addCase(getNews.rejected, (state) => {
             state.status = 'failed';
@@ -40,6 +43,6 @@ export const newsSlice = createSlice({
       },
 })
 
-export const { } = newsSlice.actions;
+export const { handleClearValue } = newsSlice.actions;
 
 export default newsSlice.reducer;

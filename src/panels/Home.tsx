@@ -25,15 +25,7 @@ export const Home: FC<HomeProps> = ({ id }) => {
     <Panel id={id}>
       <PanelHeader>Главная</PanelHeader>
 
-      <Group header={<Header mode="secondary">Navigation Example</Header>}>
-        <Div>
-          <Button stretched size="l" mode="secondary" onClick={() => routeNavigator.push('persik')}>
-            Покажите Персика, пожалуйста!
-          </Button>
-        </Div>
-      </Group>
-
-      <Group header={<Header mode="secondary">Navigation Example</Header>}>
+      <Group header={<Header mode="secondary">Список новостей</Header>}>
       <NewsList />
       </Group>
       

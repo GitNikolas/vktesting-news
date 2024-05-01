@@ -14,8 +14,10 @@ export const Comments: FC<CommentType> = ({id, text, kids}) => {
     async function toggleSubComments(){
         if(!subComments){
             const res = await fetchComments(kids);
-            const data = res.filter(item => !item.deleted);
-            setSubcommets(data);
+            if(res !== undefined){
+                const data = res.filter(item => !item.deleted);
+                setSubcommets(data);
+            }
         } else {
             setSubcommets(null);
         }
