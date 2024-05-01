@@ -16,7 +16,7 @@ export const App = () => {
   const {status, value} = useAppSelector(state => state.news)
 
   useMemo(async() => {
-    let res =  await dispatch(getNews());
+    await dispatch(getNews());
     setPopout(null);
   }, []);
 
