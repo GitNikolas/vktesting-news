@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { NewsType } from '../../Types/NewsType';
 import { getNews } from '../../app/News/newsSlice';
 import { ScreenSpinner } from '@vkontakte/vkui';
+import { convertToData } from '../../utils/Date/convertToData';
 
 export const NewsList: FC<NavIdProps> = ({ id }) => {
   const routeNavigator = useRouteNavigator();
@@ -19,12 +20,6 @@ export const NewsList: FC<NavIdProps> = ({ id }) => {
     setNewsList(news);
   }, [news])
 
-  function convertToData(timeStamp:number){
-      const data = new Date(timeStamp * 1000);
-      let date = data.toLocaleString();
-      return date;
-  }
-
   function hadleUpdateNews(){
       dispatch(getNews());
   }
@@ -32,13 +27,12 @@ export const NewsList: FC<NavIdProps> = ({ id }) => {
   return (
     <View activePanel="card">
     <Panel id="card">
-        {/* <PanelHeader>CardGrid</PanelHeader> */}
         
         <CardGrid size="l" spaced>
 
         <Button onClick={hadleUpdateNews}>Обновить</Button>
 
-        {newsList?.map((item:NewsType, index:number)=> <Card key={item.id}>
+        {newsList?.map((item:NewsType, index:number)=> <Card key={item.id} onClick={() => routeNavigator.push(`news-card/${item.id}`)}>
             <div style={{ padding: '1%' }} >
             <p>{index + 1}. {item.title}</p>
             <p>Автор: {item.by}</p>

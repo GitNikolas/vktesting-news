@@ -4,4 +4,5 @@ export interface NewsType {
     score:number;
     time:number;
     id:number;
-}
+    url:string;
+ }

@@ -1,3 +1,11 @@
+import { CommentType } from "../../Types/CommentType";
+
+export async function fetchNews(id:string){
+  const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`);
+  let data = await res.json()
+  return data;
+}
+
 export async function fetchNewsArray(){
     const res = await fetch(`https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty`);
     let data = await res.json();
@@ -9,6 +17,16 @@ export async function fetchNewsArray(){
       newsArr.push(news);
     }
     return newsArr;
+  }
+
+  export async function fetchComments(idArray:number[]) {
+    let commentsArr = [];
+    for(let i = 0; i < idArray.length; i++){
+      const res = await fetch(`https://hacker-news.firebaseio.com/v0/item/${idArray[i]}.json?print=pretty`);
+      const comment = await res.json();
+      commentsArr.push(comment);
+    }
+    return commentsArr;
   }
 
   export async function getLastestNews(){
